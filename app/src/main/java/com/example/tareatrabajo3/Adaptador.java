@@ -37,8 +37,7 @@ public class Adaptador extends RecyclerView.Adapter<Adaptador.VistaTareas> {
 
     @Override
     public int getItemCount() {
-        return listaTareas.size();  //Tuve que meterlo de esta forma, ya que al iniciar la app la lista de tareas esta vacia
-        // y daba error por lista vacia
+        return listaTareas.size();
     }
 
     static class VistaTareas extends RecyclerView.ViewHolder{
