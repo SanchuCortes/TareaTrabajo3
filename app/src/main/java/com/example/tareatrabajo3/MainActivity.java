@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private Adaptador adaptador;
     private List<Tarea> listaTareas = new ArrayList<>();
+    private List<Tarea> tareasOcultas = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         Spinner spinner = findViewById(R.id.spinner);
-        String[] opciones = {"Limpieza","Lavanderia","Cocina","Recado"};
+        String[] opciones = {this.getString(R.string.limpieza),this.getString(R.string.lavanderia),this.getString(R.string.cocina),this.getString(R.string.recado)};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,opciones);
         spinner.setAdapter(adapter);
 
@@ -50,19 +53,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adaptador);
         Button agregar = findViewById(R.id.botonAgregar);
         Button eliminar = findViewById(R.id.botonEliminar);
+        Switch swt = findViewById(R.id.switch1);
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
            String tarea = tareaNueva.getText().toString();
            if(tarea.isEmpty()){
-               Toast.makeText(MainActivity.this,"El campo tarea no puede estar vacio",Toast.LENGTH_LONG).show();
+               Toast.makeText(MainActivity.this, R.string.el_campo_tarea_no_puede_estar_vacio,Toast.LENGTH_LONG).show();
             return;
            }
            int imagen = selectorImagen();
 
            listaTareas.add(new Tarea(tarea,imagen));
            adaptador.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this,"Tarea agregada correctamente",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, R.string.tarea_agregada_correctamente,Toast.LENGTH_LONG).show();
            tareaNueva.setText("");
             }
         });
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (listaTareas.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "No hay tareas para eliminar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.no_hay_tareas_para_eliminar, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -83,14 +87,46 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (tareasAEliminar.isEmpty()) {
-                    Toast.makeText(MainActivity.this, "No hay tareas seleccionadas para eliminar", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.no_hay_tareas_seleccionadas_para_eliminar, Toast.LENGTH_SHORT).show();
                 } else {
                     listaTareas.removeAll(tareasAEliminar);
                     adaptador.notifyDataSetChanged();
-                    Toast.makeText(MainActivity.this, "Tareas eliminadas correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.tareas_eliminadas_correctamente, Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        swt.setOnCheckedChangeListener(new Switch.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Ocultar tareas seleccionadas
+                    tareasOcultas.clear();
+                    for (Tarea tarea : listaTareas) {
+                        if (tarea.getCheck()) { // Si la tarea está seleccionada
+                            tareasOcultas.add(tarea); // Guardar la tarea para restaurar después
+                        }
+                    }
+
+                    listaTareas.removeAll(tareasOcultas); // Eliminar tareas de la lista principal
+                    adaptador.notifyDataSetChanged();
+
+                    Toast.makeText(MainActivity.this, R.string.tareas_seleccionadas_ocultas, Toast.LENGTH_SHORT).show();
+                } else {
+                    // Restaurar tareas ocultas y conservar el estado de los checks
+                    for (Tarea tarea : tareasOcultas) {
+                        tarea.setCheck(true);
+                    }
+
+                    listaTareas.addAll(tareasOcultas);
+                    tareasOcultas.clear();
+                    adaptador.notifyDataSetChanged();
+
+                    Toast.makeText(MainActivity.this, R.string.tareas_restauradas, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
 
     }
 
@@ -99,17 +135,17 @@ public class MainActivity extends AppCompatActivity {
         String seleccion = spinner.getSelectedItem().toString();
         int numImagen = 0;
 
-        // Determinamos el número de imagen según la opción seleccionada
-        if (seleccion.equals("Limpieza")) {
+
+        if (seleccion.equals(getString(R.string.limpieza))) {
             numImagen = R.drawable.limpieza;
-        } else if (seleccion.equals("Lavanderia")) {
+        } else if (seleccion.equals(getString(R.string.lavanderia))) {
             numImagen = R.drawable.lavanderia;
-        } else if (seleccion.equals("Cocina")) {
+        } else if (seleccion.equals(getString(R.string.cocina))) {
             numImagen = R.drawable.cocinar;
-        } else if (seleccion.equals("Recado")) {
+        } else if (seleccion.equals(getString(R.string.recado))) {
             numImagen = R.drawable.recado;
         }
 
-        return numImagen; // Retornamos el ID del recurso de la imagen
+        return numImagen;
     }
 }

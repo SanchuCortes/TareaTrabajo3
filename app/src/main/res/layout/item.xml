@@ -50,7 +50,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:text="Completada"
-                android:textSize="10sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

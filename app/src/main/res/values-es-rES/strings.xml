@@ -1,7 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TareaTrabajo3</string>
     <string name="LabelTareas">Tareas Diarias</string>
-    <string name="imagenTarea">TODO</string>
     <string name="anadir">" Añadir..."</string>
     <string name="tareas_seleccionadas_ocultas">Tareas seleccionadas ocultas</string>
     <string name="tareas_restauradas">Tareas restauradas</string>

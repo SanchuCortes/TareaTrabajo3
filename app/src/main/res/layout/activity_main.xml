@@ -44,7 +44,7 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/borde"
             android:ems="10"
-            android:hint=" Añadir..."
+            android:hint="@string/anadir"
             android:inputType="text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/switch1" />

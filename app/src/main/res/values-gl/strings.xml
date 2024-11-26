@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TarefaTraballo3</string>
+    <string name="LabelTareas">Tarefas Diarias</string>
+    <string name="anadir">" Engadir..."</string>
+    <string name="tareas_seleccionadas_ocultas">Tarefas seleccionadas ocultas</string>
+    <string name="tareas_restauradas">Tarefas devoltas</string>
+    <string name="limpieza">Limpeza</string>
+    <string name="lavanderia">" Lavanderia"</string>
+    <string name="cocina">Cociña</string>
+    <string name="recado">Recado</string>
+    <string name="tareas_eliminadas_correctamente">Tarefas eliminadas correctamente</string>
+    <string name="no_hay_tareas_seleccionadas_para_eliminar">Non hai tarefas seleccionadas para eliminar</string>
+    <string name="no_hay_tareas_para_eliminar">Non hai tarefas para eliminar</string>
+    <string name="tarea_agregada_correctamente">Tarefa engadida correctamente</string>
+    <string name="el_campo_tarea_no_puede_estar_vacio">O campo tarefa no pode estar vacio</string>
+</resources>
