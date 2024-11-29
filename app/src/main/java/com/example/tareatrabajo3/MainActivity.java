@@ -23,7 +23,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView;    //creamos las listas, adaptador y recyclerView para usar despues
     private Adaptador adaptador;
     private List<Tarea> listaTareas = new ArrayList<>();
     private List<Tarea> tareasOcultas = new ArrayList<>();
@@ -39,35 +39,36 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         Spinner spinner = findViewById(R.id.spinner);
-        String[] opciones = {this.getString(R.string.limpieza),this.getString(R.string.lavanderia),this.getString(R.string.cocina),this.getString(R.string.recado)};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,opciones);
-        spinner.setAdapter(adapter);
+        String[] opciones = {this.getString(R.string.limpieza), this.getString(R.string.lavanderia), this.getString(R.string.cocina), this.getString(R.string.recado)}; //creamos el spinner y le metemos sus 4 opciones
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, opciones);
+        spinner.setAdapter(adapter);  //Creamos el adaptador y metemos el spinner y lo asignamos al adaptador
 
         EditText tareaNueva = findViewById(R.id.TareaNueva);
-
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adaptador = new Adaptador(listaTareas);
+        adaptador = new Adaptador(listaTareas);  //Creamos el adaptador y le asignamos una lista y el recyclerView
         recyclerView.setAdapter(adaptador);
         Button agregar = findViewById(R.id.botonAgregar);
         Button eliminar = findViewById(R.id.botonEliminar);
         Switch swt = findViewById(R.id.switch1);
+
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-           String tarea = tareaNueva.getText().toString();
-           if(tarea.isEmpty()){
-               Toast.makeText(MainActivity.this, R.string.el_campo_tarea_no_puede_estar_vacio,Toast.LENGTH_LONG).show();
-            return;
-           }
-           int imagen = selectorImagen();
+                String tarea = tareaNueva.getText().toString();
+                if (tarea.isEmpty()) {
+                    Toast.makeText(MainActivity.this, R.string.el_campo_tarea_no_puede_estar_vacio, Toast.LENGTH_LONG).show();
+                    return; //creamos el toast
+                }
+                int imagen = selectorImagen(); //aqui dependiendo que opcion del spinner se asigna una imagen mediante un metodo
 
-           listaTareas.add(new Tarea(tarea,imagen));
-           adaptador.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, R.string.tarea_agregada_correctamente,Toast.LENGTH_LONG).show();
-           tareaNueva.setText("");
+                listaTareas.add(new Tarea(tarea, imagen)); //se añade la tarea a la lista y se actualiza los cambios para que refresque el recycler y aparezca el nuevo item
+                adaptador.notifyDataSetChanged();
+                Log.d("MainActivity", "Tarea agregada: " + tarea);
+                Toast.makeText(MainActivity.this, R.string.tarea_agregada_correctamente, Toast.LENGTH_LONG).show();
+                tareaNueva.setText("");
             }
         });
 
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     listaTareas.removeAll(tareasAEliminar);
                     adaptador.notifyDataSetChanged();
+                    Log.d("MainActivity", "Tareas eliminadas: " + tareasAEliminar.size());
                     Toast.makeText(MainActivity.this, R.string.tareas_eliminadas_correctamente, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
                     listaTareas.removeAll(tareasOcultas); // Eliminar tareas de la lista principal
                     adaptador.notifyDataSetChanged();
-
+                    Log.d("MainActivity", "Tareas ocultas: " + tareasOcultas.size());
                     Toast.makeText(MainActivity.this, R.string.tareas_seleccionadas_ocultas, Toast.LENGTH_SHORT).show();
                 } else {
                     // Restaurar tareas ocultas y conservar el estado de los checks
@@ -121,20 +123,17 @@ public class MainActivity extends AppCompatActivity {
                     listaTareas.addAll(tareasOcultas);
                     tareasOcultas.clear();
                     adaptador.notifyDataSetChanged();
-
+                    Log.d("MainActivity", "Tareas restauradas: " + listaTareas.size());
                     Toast.makeText(MainActivity.this, R.string.tareas_restauradas, Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
-    public int selectorImagen() {
+    public int selectorImagen() {   //este es el metodo selector de imagen que escoge la imagen dependiendo del texto que este en el spinner
         Spinner spinner = findViewById(R.id.spinner);
         String seleccion = spinner.getSelectedItem().toString();
         int numImagen = 0;
-
 
         if (seleccion.equals(getString(R.string.limpieza))) {
             numImagen = R.drawable.limpieza;
