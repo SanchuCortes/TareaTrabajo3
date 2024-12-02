@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Button agregar = findViewById(R.id.botonAgregar);
         Button eliminar = findViewById(R.id.botonEliminar);
         Switch swt = findViewById(R.id.switch1);
-
+// commit
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
