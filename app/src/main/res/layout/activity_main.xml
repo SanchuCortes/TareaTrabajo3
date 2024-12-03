@@ -64,13 +64,13 @@
 
         <Button
             android:id="@+id/botonEliminar"
-            android:layout_width="102dp"
-            android:layout_height="72dp"
+            android:layout_width="96dp"
+            android:layout_height="50dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:foregroundGravity="center"
-            android:text="Eliminar completas"
+            android:text="Eliminar completa"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +96,26 @@
             android:background="@drawable/borde"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TareaNueva" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tablayout"
+            android:layout_width="409dp"
+            android:layout_height="19dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tareas" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/TareasEspeciales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tareas Especiales" />
+
+        </com.google.android.material.tabs.TabLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

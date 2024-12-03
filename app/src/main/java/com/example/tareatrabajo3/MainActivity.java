@@ -1,14 +1,19 @@
 package com.example.tareatrabajo3;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +23,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private Adaptador adaptador;
     private List<Tarea> listaTareas = new ArrayList<>();
     private List<Tarea> tareasOcultas = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +49,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         Spinner spinner = findViewById(R.id.spinner);
         String[] opciones = {this.getString(R.string.limpieza), this.getString(R.string.lavanderia), this.getString(R.string.cocina), this.getString(R.string.recado)}; //creamos el spinner y le metemos sus 4 opciones
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, opciones);
+
         spinner.setAdapter(adapter);  //Creamos el adaptador y metemos el spinner y lo asignamos al adaptador
 
         EditText tareaNueva = findViewById(R.id.TareaNueva);
+         TextView labelTareas = findViewById(R.id.LabelTareas);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -128,9 +142,74 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        TabLayout tabLayout = findViewById(R.id.tablayout);
+// Añadir pestañas
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+// Acción al seleccionar una pestaña
+                Log.d("TabLayout", "Tab seleccionada: " + tab.getText());
+                if (tab.getPosition() ==  1){
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Proximamente", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("Deshacer", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Acción al hacer clic en "Deshacer"
+                            Toast.makeText(getApplicationContext(), "Acción deshecha", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    snackbar.show();
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+// Acción al deseleccionar una pestaña
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+// Acción al volver a seleccionar una pestaña
+            }
+        });
+
+        labelTareas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopUpMenu(view);
+            }
+        });
+    }
+    // Método para asociar un menú emergente popup al pulsar el textView
+    public void showPopUpMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.color_menu, popupMenu.getMenu());
+        // Manejador de clicks
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                TextView tv;
+                if (item.getItemId() == R.id.itemRojo) {
+                    tv = (TextView) view;
+                    tv.setTextColor(Color.RED);
+                }
+                if (item.getItemId() == R.id.itemVerde) {
+                    tv = (TextView) view;
+                    tv.setTextColor(Color.GREEN);
+                }
+                if (item.getItemId() == R.id.itemAzul) {
+                    tv = (TextView) view;
+                    tv.setTextColor(Color.BLUE);
+                }
+                return true;
+            }
+        });
+        // mostrarlo
+        popupMenu.show();
     }
 
-    public int selectorImagen() {   //este es el metodo selector de imagen que escoge la imagen dependiendo del texto que este en el spinner
+
+        public int selectorImagen() {   //este es el metodo selector de imagen que escoge la imagen dependiendo del texto que este en el spinner
         Spinner spinner = findViewById(R.id.spinner);
         String seleccion = spinner.getSelectedItem().toString();
         int numImagen = 0;
