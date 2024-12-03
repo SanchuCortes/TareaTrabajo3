@@ -192,14 +192,20 @@ public class MainActivity extends AppCompatActivity {
                 if (item.getItemId() == R.id.itemRojo) {
                     tv = (TextView) view;
                     tv.setTextColor(Color.RED);
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Color Rojo", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
                 if (item.getItemId() == R.id.itemVerde) {
                     tv = (TextView) view;
                     tv.setTextColor(Color.GREEN);
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Color Verde", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
                 if (item.getItemId() == R.id.itemAzul) {
                     tv = (TextView) view;
                     tv.setTextColor(Color.BLUE);
+                    Snackbar snackbar = Snackbar.make(findViewById(R.id.main), "Color Azul", Snackbar.LENGTH_LONG);
+                    snackbar.show();
                 }
                 return true;
             }
