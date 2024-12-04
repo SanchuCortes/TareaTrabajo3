@@ -10,29 +10,34 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/LabelTareas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="128dp"
+            android:layout_marginStart="289dp"
+            android:layout_marginEnd="288dp"
             android:text="@string/LabelTareas"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
-            android:layout_height="546dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="3dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="4dp"
             android:background="@drawable/borde"
+            app:layout_constraintBottom_toTopOf="@+id/switch1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/LabelTareas"
@@ -41,24 +46,27 @@
         <EditText
             android:id="@+id/TareaNueva"
             android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="18dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginBottom="80dp"
             android:background="@drawable/borde"
             android:ems="10"
             android:hint="@string/anadir"
             android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tablayout"
+            app:layout_constraintEnd_toStartOf="@+id/botonAgregar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Switch
             android:id="@+id/switch1"
             android:layout_width="252dp"
-            android:layout_height="37dp"
+            android:layout_height="48dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="45dp"
             android:minHeight="48dp"
             android:text="Mostrar  tareas completadas"
             android:textSize="16sp"
@@ -70,40 +78,48 @@
             android:id="@+id/botonEliminar"
             android:layout_width="110dp"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
             android:foregroundGravity="center"
-            android:text="Eliminar completa"
+            android:text="Eliminar completas"
             android:textSize="11sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/botonAgregar" />
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
 
         <Button
             android:id="@+id/botonAgregar"
             android:layout_width="110dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="12dp"
             android:text="Agregar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/TareaNueva" />
+            app:layout_constraintBottom_toTopOf="@+id/tablayout"
+            app:layout_constraintEnd_toStartOf="@+id/botonEliminar"
+            app:layout_constraintTop_toBottomOf="@+id/switch1"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Spinner
             android:id="@+id/spinner"
-            android:layout_width="267dp"
-            android:layout_height="66dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="74dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/borde"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/botonAgregar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TareaNueva" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
-            android:layout_width="409dp"
-            android:layout_height="19dp"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
