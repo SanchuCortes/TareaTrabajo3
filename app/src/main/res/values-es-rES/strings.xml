@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">TareaTrabajo3</string>
     <string name="LabelTareas">Tareas Diarias</string>
+    <string name="imagenTarea">Imagen Tarea</string>
     <string name="anadir">" Añadir..."</string>
     <string name="tareas_seleccionadas_ocultas">Tareas seleccionadas ocultas</string>
     <string name="tareas_restauradas">Tareas restauradas</string>
@@ -14,4 +15,5 @@
     <string name="no_hay_tareas_para_eliminar">No hay tareas para eliminar</string>
     <string name="tarea_agregada_correctamente">Tarea agregada correctamente</string>
     <string name="el_campo_tarea_no_puede_estar_vacio">El campo tarea no puede estar vacio</string>
+    <string name="mostrar_tareas_completadas">Mostrar Tareas Completadas</string>
 </resources>

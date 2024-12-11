@@ -1,35 +1,14 @@
 package com.example.tareatrabajo3;
 
 public class Tarea {
+    private String nombre;
+    private int imagen;
+    private boolean check;
 
-    String nombre;
-    Boolean check;
-
-    public Tarea(String nombre, int imagen,Boolean check) {
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.check = check;
-    }
     public Tarea(String nombre, int imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.check = false;
-    }
-
-    public Boolean getCheck() {
-        return check;
-    }
-
-    public void setCheck(Boolean check) {
-        this.check = check;
-    }
-
-    public int getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(int imagen) {
-        this.imagen = imagen;
     }
 
     public String getNombre() {
@@ -40,6 +19,19 @@ public class Tarea {
         this.nombre = nombre;
     }
 
-    int imagen;
+    public int getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
+    }
+
+    public boolean getCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
 }

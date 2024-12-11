@@ -14,4 +14,7 @@
     <string name="no_hay_tareas_para_eliminar">No hay tareas para eliminar</string>
     <string name="tarea_agregada_correctamente">Tarea agregada correctamente</string>
     <string name="el_campo_tarea_no_puede_estar_vacio">El campo tarea no puede estar vacio</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="mostrar_tareas_completadas">Mostrar Tareas Completadas</string>
 </resources>

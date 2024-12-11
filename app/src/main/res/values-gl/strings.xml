@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">TarefaTraballo3</string>
     <string name="LabelTareas">Tarefas Diarias</string>
+    <string name="imagenTarea">Imaxen Tarea</string>
     <string name="anadir">" Engadir..."</string>
     <string name="tareas_seleccionadas_ocultas">Tarefas seleccionadas ocultas</string>
     <string name="tareas_restauradas">Tarefas devoltas</string>
@@ -14,4 +15,5 @@
     <string name="no_hay_tareas_para_eliminar">Non hai tarefas para eliminar</string>
     <string name="tarea_agregada_correctamente">Tarefa engadida correctamente</string>
     <string name="el_campo_tarea_no_puede_estar_vacio">O campo tarefa no pode estar vacio</string>
+    <string name="mostrar_tareas_completadas">Mostrar Tareas Completadas</string>
 </resources>
